@@ -1,5 +1,6 @@
 ﻿using System.Xml.Serialization;
 using App01.Model;
+using App01.UI;
 
 namespace App01;
 
@@ -119,9 +120,89 @@ public partial class Form1 : Form
         listBoxCity.Items.Add(textBoxName.Text);
     }
 
+    private void panel1_Paint(object sender, PaintEventArgs e)
+    {
 
-    //private double calc(string a, string b, string op)
-    //{
+    }
 
-    //}
+    private void buttonCalcAdd_Click(object sender, EventArgs e)
+    {
+        textBoxResult.Text = calc(textBoxA.Text, textBoxB.Text, CalcOp.Add).ToString();
+    }
+    
+    private void buttonCalcSub_Click(object sender, EventArgs e)
+    {
+        textBoxResult.Text = calc(textBoxA.Text, textBoxB.Text, CalcOp.Sub).ToString();
+    }
+
+    private void buttonCalcMul_Click(object sender, EventArgs e)
+    {
+        textBoxResult.Text = calc(textBoxA.Text, textBoxB.Text, CalcOp.Mul).ToString();
+    }
+
+    private void buttonCalcDiv_Click(object sender, EventArgs e)
+    {
+        textBoxResult.Text = calc(textBoxA.Text, textBoxB.Text, CalcOp.Div).ToString();
+    }
+
+    private double calc(string strA, string strB, string op)
+    {
+        var a = Convert.ToInt32(strA);
+        var b = Convert.ToInt32(strB);
+        switch (op)
+        {
+            case "+": return a + b;
+            case "-": return a - b;
+            case "*": return a * b;
+            case "/": return a / b;
+            default: throw new ArgumentException("op not defined!");
+        }
+
+    }
+
+    //Overload function
+    private double calc(string strA, string strB, CalcOp op)
+    {
+        var a = Convert.ToInt32(strA);
+        var b = Convert.ToInt32(strB);
+        switch (op)
+        {
+            case CalcOp.Add: return a + b;
+            case CalcOp.Sub: return a - b;
+            case CalcOp.Mul: return a * b;
+            case CalcOp.Div: return a / b;
+            default: throw new ArgumentException("op not defined!");
+        }
+    }
+
+
+    private double calcPattern(string strA, string strB, CalcOp op)
+    {
+        var a = Convert.ToInt32(strA);
+        var b = Convert.ToInt32(strB);
+        return op switch
+        {
+            CalcOp.Add => a + b,
+            CalcOp.Sub => a - b,
+            CalcOp.Mul => a * b,
+            CalcOp.Div => a / b,
+            _ => throw new ArgumentException("op not defined!")
+        };
+    }
+
+    enum CalcOp
+    {
+        Add,
+        Sub, 
+        Mul,
+        Div
+    }
+
+    private void button1_Click(object sender, EventArgs e)
+    {
+        var form = new FormUsers(); 
+        //form.Show();
+        form.ShowDialog();
+
+    }
 }
