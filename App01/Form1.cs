@@ -59,7 +59,7 @@ public partial class Form1 : Form
         //Boxing 
         var name = "ali";
         object obj = name;
-        object obj2 = new Form1();
+        //object obj2 = new Form1();
         myFunc(obj);
 
         // Garbage Collector
@@ -72,6 +72,21 @@ public partial class Form1 : Form
         // p2.Id ? 0
 
         var p3 = new Product("Mouse");
+
+
+        var p4 = new Product();
+        p4.Name = "Keyboard";
+        p4.Price = 100;
+
+
+        //Object Initializer 🌟
+        var p5 = new Product
+        {
+            Name = "Mic",
+            Price = 100,
+            Id = 2,
+            Rate = 5
+        };
     }
 
     private void myFunc(object param)
@@ -91,6 +106,22 @@ public partial class Form1 : Form
 
     private void Form1_Load(object sender, EventArgs e)
     {
-
     }
+
+    private void buttonAdd_Click(object sender, EventArgs e)
+    {
+        //if (!listBoxCity.Items.Contains(textBoxName.Text))
+        //{
+        //    listBoxCity.Items.Add(textBoxName.Text);
+        //}
+
+        if (listBoxCity.Items.Contains(textBoxName.Text)) return;
+        listBoxCity.Items.Add(textBoxName.Text);
+    }
+
+
+    //private double calc(string a, string b, string op)
+    //{
+
+    //}
 }
